@@ -94,3 +94,12 @@ desktop.ini
 *.pid
 .tmp/
 temp/
+
+
+# Local optimization guides (not for repository)
+*OPTIMIZATION*.md
+*GUIDE*.md
+*CHECKLIST*.md
+EXECUTIVE_SUMMARY.md
+START_HERE.md
+INDEX.md
