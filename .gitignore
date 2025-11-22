@@ -1,0 +1,96 @@
+# YouTube Channel Merger - Git Ignore File
+# This file prevents sensitive information from being accidentally committed to version control
+
+# ============================================================================
+# SENSITIVE DATA - NEVER COMMIT THESE
+# ============================================================================
+
+# OAuth Credentials (CRITICAL - Contains API secrets)
+secret/credentials_config.json
+credentials_config.json
+
+# Authentication Tokens (Contains access tokens)
+secret/token_*.pickle
+token_*.pickle
+
+# User Account Credentials (Contains email addresses)
+youtube_accounts.csv
+
+# ============================================================================
+# OUTPUT FILES - Keep Local
+# ============================================================================
+
+# Generated CSV files with channel information
+output/
+
+# ============================================================================
+# PYTHON ENVIRONMENT & CACHING
+# ============================================================================
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pip cache
+*.egg-info/
+dist/
+build/
+
+# ============================================================================
+# IDE & EDITOR ARTIFACTS
+# ============================================================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio
+.vs/
+
+# General editors
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ============================================================================
+# OS SPECIFIC
+# ============================================================================
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+.directory
+
+# ============================================================================
+# LOGS & TEMPORARY FILES
+# ============================================================================
+
+*.log
+*.pid
+.tmp/
+temp/

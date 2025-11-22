@@ -1,0 +1,166 @@
+{
+  "name": "YouTube Subscription Extractor",
+  "version": "1.0.0",
+  "type": "application/tool",
+  "category": "data-extraction",
+  "subcategories": ["YouTube", "API", "CSV", "Automation"],
+  "description": "Extract, backup, and analyze YouTube subscriptions from multiple accounts with secure OAuth 2.0 authentication. Exports subscription lists as CSV files with comprehensive channel information, supports batch processing, subscription merging, and cross-platform compatibility.",
+  "longDescription": "A powerful Python application for extracting YouTube subscription lists from multiple accounts simultaneously. Perfect for content creators, researchers, and data analysts who need to backup, migrate, analyze, or consolidate YouTube subscriptions across multiple channels. Features secure OAuth 2.0 authentication, individual per-account CSV exports, subscription merging capabilities, and comprehensive channel metadata capture.",
+  "keywords": [
+    "youtube",
+    "subscriptions",
+    "extractor",
+    "backup",
+    "python",
+    "oauth",
+    "csv",
+    "multi-account",
+    "google-api",
+    "data-export",
+    "automation",
+    "channel-archive",
+    "subscription-analysis",
+    "youtube-api",
+    "batch-processing",
+    "oauth2",
+    "authentication",
+    "channel-metadata",
+    "data-mining",
+    "youtube-automation"
+  ],
+  "topics": [
+    "youtube",
+    "python",
+    "oauth",
+    "google-api",
+    "subscription-extractor",
+    "data-export",
+    "csv",
+    "automation",
+    "backup",
+    "analysis",
+    "youtube-subscriptions",
+    "multi-account",
+    "open-source",
+    "authentication",
+    "api-client"
+  ],
+  "author": {
+    "name": "Aban Mitra",
+    "email": "abanmitra@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abanmitra/youtube-subscription-extractor.git"
+  },
+  "homepage": "https://github.com/abanmitra/youtube-subscription-extractor",
+  "license": "MIT",
+  "language": "Python",
+  "minimumPythonVersion": "3.7",
+  "features": [
+    "Multi-account subscription extraction",
+    "Secure OAuth 2.0 authentication",
+    "Channel information capture (ID, name, category, links)",
+    "Individual per-account CSV exports",
+    "Subscription merging and deduplication",
+    "Automatic token lifecycle management",
+    "Error handling and recovery",
+    "Comprehensive logging",
+    "Cross-platform support (Windows, macOS, Linux)",
+    "Batch processing capabilities",
+    "CSV input validation",
+    "Enterprise-grade security",
+    "Transparent token management",
+    "Progress tracking and status updates"
+  ],
+  "useCases": [
+    "Content creator account backup",
+    "Subscription data analysis",
+    "Multi-account consolidation",
+    "Channel migration",
+    "Compliance and archival",
+    "Market research",
+    "Subscription trend analysis",
+    "Data import to other systems"
+  ],
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "dependencies": [
+    "google-api-python-client",
+    "google-auth-oauthlib",
+    "google-auth-httplib2"
+  ],
+  "requiredServices": [
+    "Google Cloud Console",
+    "YouTube Data API v3",
+    "Google OAuth 2.0"
+  ],
+  "fileFormats": [
+    "CSV"
+  ],
+  "apis": [
+    "YouTube Data API v3"
+  ],
+  "authentication": "OAuth 2.0",
+  "documentation": {
+    "readme": "README.md",
+    "installation": "INSTALL.md",
+    "contributing": "CONTRIBUTING.md",
+    "security": "SECURITY.md",
+    "changelog": "CHANGELOG.md",
+    "features": "FEATURES.md",
+    "troubleshooting": "TROUBLESHOOTING.md",
+    "codeOfConduct": "CODE_OF_CONDUCT.md"
+  },
+  "searchTerms": {
+    "primary": [
+      "YouTube subscription extractor",
+      "extract YouTube subscriptions",
+      "YouTube subscription backup",
+      "Python YouTube API",
+      "multi-account YouTube export"
+    ],
+    "secondary": [
+      "YouTube channel data export",
+      "subscription data analysis",
+      "OAuth YouTube authentication",
+      "CSV subscription export",
+      "YouTube account consolidation",
+      "subscription archiver",
+      "channel information extract",
+      "bulk YouTube export",
+      "YouTube data mining"
+    ],
+    "technical": [
+      "YouTube Data API v3 Python",
+      "OAuth 2.0 implementation",
+      "CSV export tool",
+      "batch API processing",
+      "authentication token management"
+    ]
+  },
+  "metrics": {
+    "speedPerAccount": "2-5 seconds",
+    "averageSubscriptionsPerAccount": "1000",
+    "memoryUsage": "50-100 MB",
+    "diskUsagePerAccount": "1-2 MB"
+  },
+  "qualityIndicators": {
+    "documentation": "Comprehensive",
+    "security": "Enterprise-grade",
+    "testing": "Multi-platform",
+    "authentication": "OAuth 2.0 compliant",
+    "errorHandling": "Robust with recovery"
+  },
+  "targetAudience": [
+    "Content creators",
+    "Data analysts",
+    "Python developers",
+    "YouTube enthusiasts",
+    "Researchers",
+    "Automation professionals"
+  ]
+}

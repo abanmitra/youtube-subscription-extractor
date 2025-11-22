@@ -1,0 +1,99 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check documentation files
+      run: |
+        python -c "
+        import os
+        docs = [
+            'README.md',
+            'SECURITY.md', 
+            'CONTRIBUTING.md',
+            'CODE_OF_CONDUCT.md',
+            'TROUBLESHOOTING.md',
+            'FEATURES.md',
+            'CHANGELOG.md',
+            'LICENSE'
+        ]
+        missing = []
+        for doc in docs:
+            if not os.path.exists(doc):
+                missing.append(doc)
+                print(f'❌ Missing: {doc}')
+            else:
+                size = os.path.getsize(doc)
+                print(f'✓ {doc} ({size} bytes)')
+        
+        if missing:
+            print(f'\\nMissing documentation files: {missing}')
+            exit(1)
+        else:
+            print('\\n✓ All documentation files present')
+        "
+    
+    - name: Validate Markdown
+      run: |
+        python -c "
+        import os
+        docs = [f for f in os.listdir('.') if f.endswith('.md')]
+        for doc in docs:
+            with open(doc, 'r', encoding='utf-8') as f:
+                content = f.read()
+                if not content.strip():
+                    print(f'❌ {doc} is empty')
+                    exit(1)
+                if '# ' not in content:
+                    print(f'⚠️ {doc} has no headers')
+                print(f'✓ {doc} is valid')
+        print('\\n✓ All Markdown files are valid')
+        "
+    
+    - name: Check README completeness
+      run: |
+        python -c "
+        with open('README.md', 'r') as f:
+            readme = f.read().lower()
+            required = ['installation', 'usage', 'features', 'security', 'license', 'troubleshooting']
+            missing = [r for r in required if r not in readme]
+            if missing:
+                print(f'⚠️ README missing sections: {missing}')
+            else:
+                print('✓ README has all recommended sections')
+        "
+    
+    - name: Validate links in documentation
+      run: |
+        python -c "
+        import re
+        import os
+        
+        files = [f for f in os.listdir('.') if f.endswith('.md')]
+        for fname in files:
+            with open(fname, 'r') as f:
+                content = f.read()
+                # Find markdown links
+                links = re.findall(r'\[([^\]]+)\]\(([^\)]+)\)', content)
+                for text, link in links:
+                    if link.startswith('#'):
+                        continue  # Internal links
+                    if link.startswith('http'):
+                        continue  # External links
+                    if not link.endswith('.md') and not link.startswith('/'):
+                        if not os.path.exists(link):
+                            print(f'⚠️ {fname}: Link file not found: {link}')
+                        else:
+                            print(f'✓ {fname}: Link valid: {link}')
+        print('\\n✓ Documentation links check completed')
+        "

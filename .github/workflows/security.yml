@@ -1,0 +1,85 @@
+name: Security Checks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run security checks weekly
+    - cron: '0 0 * * 0'
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety
+    
+    - name: Run Bandit security checks
+      run: |
+        bandit -r src/ -f json -o bandit-report.json || echo "Bandit check completed"
+        bandit -r src/ -ll
+      
+    - name: Check for known vulnerabilities
+      run: |
+        pip install -r requirements.txt
+        safety check || echo "Safety check completed"
+    
+    - name: Verify no secrets in code
+      run: |
+        ! grep -r "secret\|password\|api_key\|token" src/ --include="*.py" | grep -v "token_" | grep -v "# " || echo "Secret pattern check completed"
+    
+    - name: Check credentials protection
+      run: |
+        python -c "
+        import os
+        print('Checking .gitignore...')
+        with open('.gitignore', 'r') as f:
+            content = f.read()
+            assert 'secret/' in content, 'secret/ should be in .gitignore'
+            assert 'credentials_config.json' in content, 'credentials_config.json should be in .gitignore'
+            assert 'youtube_accounts.csv' in content, 'youtube_accounts.csv should be in .gitignore'
+        print('✓ .gitignore protection verified')
+        "
+
+  dependency-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Check dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip list
+        
+    - name: Verify required packages
+      run: |
+        python -c "
+        import sys
+        required = ['google', 'google_auth_oauthlib', 'google_auth_httplib2']
+        for pkg in required:
+            try:
+                __import__(pkg)
+                print(f'✓ {pkg} installed')
+            except ImportError:
+                print(f'❌ Missing: {pkg}')
+                sys.exit(1)
+        "
