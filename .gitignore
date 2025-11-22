@@ -95,6 +95,10 @@ desktop.ini
 .tmp/
 temp/
 
+# ============================================================================
+# Specific Python FILES
+# ============================================================================
+verify_seo_optimization.py
 
 # Local optimization guides (not for repository)
 *OPTIMIZATION*.md
